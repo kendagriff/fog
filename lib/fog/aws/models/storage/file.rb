@@ -68,6 +68,12 @@ module Fog
           true
         end
 
+        def rename(target_directory_key, target_file_key, options = {})
+          copy target_directory_key, target_file_key, options
+          destroy options
+          true
+        end
+
         remove_method :metadata
         def metadata
           attributes.reject {|key, value| !(key.to_s =~ /^x-amz-meta-/)}
